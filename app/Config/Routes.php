@@ -35,7 +35,7 @@ $routes->get('/', 'Home::index');
 //$routes->get('/contacto', 'Home::contacto');
 $routes->get('/contactame/(:any)', 'Home::contacto/$1', ['as' => 'contacto']);
 
-$routes->group('Dash', ['namespace' => 'App\Controllers\dashboard'], static function ($routes) {
+$routes->group('', ['namespace' => 'App\Controllers\dashboard'], static function ($routes) {
     $routes->get('Movie', 'MovieController::index');
     $routes->get('Movie/test/(:any)', 'MovieController::test/$1');
     $routes->get('Category', 'CategoryController::index');
