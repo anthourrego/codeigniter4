@@ -3,6 +3,7 @@
 namespace App\Controllers\dashboard;
 
 use App\Controllers\BaseController;
+use App\Models\MovieModel;
 
 class MovieController extends BaseController {
 
@@ -33,6 +34,11 @@ class MovieController extends BaseController {
     echo view("dashboard/templates/header", $dataHeader);
     echo view("dashboard/movie/index", $data);
     echo view("dashboard/templates/footer");
+  }
+
+  public function show() {
+      $movie = new MovieModel();
+      var_dump($movie->get(7));
   }
 
 } 

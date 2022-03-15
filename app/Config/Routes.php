@@ -38,6 +38,7 @@ $routes->get('/contactame/(:any)', 'Home::contacto/$1', ['as' => 'contacto']);
 $routes->group('', ['namespace' => 'App\Controllers\dashboard'], static function ($routes) {
     $routes->get('Movie', 'MovieController::index');
     $routes->get('Movie/test/(:any)', 'MovieController::test/$1');
+    $routes->get('Movie/show/', 'MovieController::show/');
     $routes->get('Category', 'CategoryController::index');
 });
 
