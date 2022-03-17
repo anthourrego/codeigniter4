@@ -9,10 +9,13 @@
   <tbody>
     <?php foreach ($movies as $key => $m): ?>
       <tr>
-        <td><?= $m ?></td>
-        <td>Superman</td>
+        <td><?= $m->id ?></td>
+        <td><?= $m->title ?></td>
         <td></td>
       </tr>
     <?php endforeach ?>
   </tbody>
 </table>
+
+<?= $pager->links() ?>
+<?= $pager->simpleLinks() ?>

@@ -13,8 +13,11 @@ class MovieController extends BaseController {
       'title' => 'Listado de películas'
     ];
 
+    $movies = new MovieModel(); 
+
     $data = [
-      'movies' => array(0, 1, 2, 3, 4)
+      'movies' => $movies->asObject()->paginate(5),
+      'pager' => $movies->pager
     ];
 
     echo view("dashboard/templates/header", $dataHeader);
