@@ -9,20 +9,15 @@ class MovieController extends BaseController {
 
   public function index() {
 
-    $dataHeader = [
-      'title' => 'Listado de películas'
-    ];
-
     $movies = new MovieModel(); 
 
     $data = [
       'movies' => $movies->asObject()->paginate(5),
       'pager' => $movies->pager
     ];
+    
+    $this->_loadDefaultView('index', 'Listado de películas', $data);
 
-    echo view("dashboard/templates/header", $dataHeader);
-    echo view("dashboard/movie/index", $data);
-    echo view("dashboard/templates/footer");
   }
 
   public function test($nombre = "Thony") {
@@ -33,15 +28,34 @@ class MovieController extends BaseController {
     $data = [
       'movies' => array(0, 1, 2, 3, 4)
     ];
-
-    echo view("dashboard/templates/header", $dataHeader);
-    echo view("dashboard/movie/index", $data);
-    echo view("dashboard/templates/footer");
   }
 
-  public function show() {
-      $movie = new MovieModel();
-      var_dump($movie->get(7));
+  public function show($id = null) {
+    $movie = new MovieModel();
+    if ($id == 0) {
+      var_dump($movie->findAll());   
+    } else{
+      var_dump($movie->get($id));
+    }
+  }
+
+  public function new() {
+    $this->_loadDefaultView('new', 'Crear pelicula');
+  }
+
+  public function create() {
+    echo("create");
+  }
+
+  private function _loadDefaultView($view, $titulo = 'Codeigniter 4',$data = [], ){
+
+    $dataHeader = [
+      'title' => $titulo
+    ];
+
+    echo view("dashboard/templates/header", $dataHeader);
+    echo view("dashboard/movie/{$view}", $data);
+    echo view("dashboard/templates/footer");
   }
 
 } 

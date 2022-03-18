@@ -34,13 +34,19 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 //$routes->get('/contacto', 'Home::contacto');
 $routes->get('/contactame/(:any)', 'Home::contacto/$1', ['as' => 'contacto']);
+$routes->get('Category', 'CategoryController::index');
 
-$routes->group('', ['namespace' => 'App\Controllers\dashboard'], static function ($routes) {
-    $routes->get('Movie', 'MovieController::index');
-    $routes->get('Movie/test/(:any)', 'MovieController::test/$1');
-    $routes->get('Movie/show/', 'MovieController::show/');
-    $routes->get('Category', 'CategoryController::index');
+$routes->group('dashboard', ['namespace' => 'App\Controllers\dashboard'], static function ($routes) {
+    //$routes->get('Movie', 'MovieController::index');
+    //$routes->get('Movie/test/(:any)', 'MovieController::test/$1');
+    //$routes->get('Movie/show/', 'MovieController::show/');
+    $routes->resource('Movie', ['controller' => 'MovieController']);
+    $routes->post('Movie/create', 'MovieController::create');
+    //$routes->post('Movie/new', 'MovieController::new');
 });
+
+
+
 
 /*
  * --------------------------------------------------------------------
